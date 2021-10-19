@@ -1,0 +1,22 @@
+{
+  "name": "team_profile_generator",
+  "version": "1.0.0",
+  "description": "Team profile generator for roles in a company.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Talha636/team_profile_generator.git"
+  },
+  "author": "Talha636",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Talha636/team_profile_generator/issues"
+  },
+  "homepage": "https://github.com/Talha636/team_profile_generator#readme"
+}
