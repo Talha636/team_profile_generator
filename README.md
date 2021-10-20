@@ -33,17 +33,9 @@ The application will be invoked by using the following command:
 node index.js
 
 
-It is recommended that you start with a directory structure that looks like the following example:
-
-├── __tests__/             //jest tests
-│   ├── Employee.test.js
-│   ├── Engineer.test.js
-│   ├── Intern.test.js
-│   └── Manager.test.js
 ├── dist/                  // rendered output (HTML) and CSS style sheet
 ├── src/                   // template helper code 
 ├── index.js               // runs the application
-└── package.json           
 
 **Important**: Make sure that you remove `dist` from the `.gitignore` file so that Git will track this folder and include it when you push up to your application's repository.
 
