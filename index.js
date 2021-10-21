@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const generateTeam = require('./src/generateTeam');
 
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
@@ -109,6 +110,10 @@ const addAnotherEmployee = [
     }
 ]
 
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, (err) => err ? console.error(err) : console.log('Success!'));
+}
+
 function employeeQuestions() {
     inquirer.prompt(questions).then((answers) => {
         if (answers.employeeRole === 'Manager') {
@@ -145,7 +150,8 @@ function employeeQuestions() {
                 })
             })
         }
-        // writeToFile('GeneratedREADME.md', generateMarkdown(answers));
+        console.log(answers);
+        writeToFile('team.html', generateTeam(answers, managerAnswer, engineerAnswer, internAnswer));
     })
 }
 
