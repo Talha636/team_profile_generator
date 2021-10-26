@@ -6,7 +6,15 @@ const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 
-const questions = [
+let team = [];
+
+const newEmployee = [
+    {
+        type: 'list',
+        name: 'employeeRole',
+        message: 'Choose the employee position.',
+        choices: ['Manager', 'Engineer', 'Intern'],
+    },
     {
         type: 'input',
         name: 'employeeName',
@@ -45,14 +53,8 @@ const questions = [
                 return false;
             }
         }
-    },
-    {
-        type: 'list',
-        name: 'employeeRole',
-        message: 'Choose the employee position.',
-        choices: ['Manager', 'Engineer', 'Intern'],
     }
-];
+]
 
 const managerQuestion = [
     {
@@ -110,49 +112,54 @@ const addAnotherEmployee = [
     }
 ]
 
-function writeToFile(fileName, data) {
-    fs.writeFile(fileName, data, (err) => err ? console.error(err) : console.log('Success!'));
-}
-
-function employeeQuestions() {
-    inquirer.prompt(questions).then((answers) => {
-        if (answers.employeeRole === 'Manager') {
-            inquirer.prompt(managerQuestion).then((managerAnswer) => {
-                console.log(answers, managerAnswer);
+function addTeam() {
+    inquirer.prompt(newEmployee).then((answer) => {
+        if (answer.employeeRole === 'Manager') {
+            inquirer.prompt(managerQuestion).then((managerOfficeNumber) => {
+                console.log(answer, managerOfficeNumber);
+                const managers = new Manager(answer.employeeRole, employeeName, employeeId, employeeEmail, managerOfficeNumber);
+                team.push(managers);
                 inquirer.prompt(addAnotherEmployee).then((response) => {
                     if (response.anotherEmployee === true) {
-                       employeeQuestions(); 
+                        addTeam();
                     } else {
                         return;
                     }
                 })
             })
-        } else if (answers.employeeRole === 'Engineer') {
-            inquirer.prompt(engineerQuestion).then((engineerAnswer) => {
-                console.log(answers, engineerAnswer);
+        } else if (answer.employeeRole === 'Engineer') {
+            inquirer.prompt(engineerQuestion).then((engineerGithub) => {
+                console.log(answer, engineerGithub);
+                const engineers = new Engineer(answer.employeeRole, employeeName, employeeId, employeeEmail, managerOfficeNumber);
+                team.push(engineers);
                 inquirer.prompt(addAnotherEmployee).then((response) => {
                     if (response.anotherEmployee === true) {
-                       employeeQuestions(); 
+                        addTeam();
                     } else {
                         return;
                     }
                 })
             })
         } else {
-            inquirer.prompt(internQuestion).then((internAnswer) => {
-                console.log(answers, internAnswer);
+            inquirer.prompt(internQuestion).then((internSchool) => {
+                console.log(answer, internSchool);
+                const interns = new Intern(answer.employeeRole, employeeName, employeeId, employeeEmail, managerOfficeNumber);
+                team.push(interns);
                 inquirer.prompt(addAnotherEmployee).then((response) => {
                     if (response.anotherEmployee === true) {
-                       employeeQuestions(); 
+                        addTeam();
                     } else {
                         return;
                     }
                 })
             })
         }
-        console.log(answers);
-        writeToFile('team.html', generateTeam(answers, managerAnswer, engineerAnswer, internAnswer));
     })
+    writeToFile('team.html', )
 }
 
-employeeQuestions();
+addTeam();
+
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, (err) => err ? console.error(err) : console.log('Success!'));
+}
