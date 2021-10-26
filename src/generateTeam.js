@@ -2,7 +2,7 @@ const employees = require('../index');
 
 const generateTeam = (employees) => {
     return `
-    ${employees}
+    ${JSON.stringify(employees, null, 2)}
     `
 }
 

@@ -123,7 +123,7 @@ function addTeam() {
                     if (response.anotherEmployee === true) {
                         addTeam();
                     } else {
-                        return;
+                        writeToFile();
                     }
                 })
             })
@@ -155,12 +155,12 @@ function addTeam() {
             })
         }
     })
-    writeToFile();
+    // writeToFile();
     console.log(team);
 }
 
 addTeam();
 
-function writeToFile(fileName, team) {
-    fs.writeFile('./dist/team.html', generateTeam(JSON.team), (err) => err ? console.error(err) : console.log('Success!'));
+function writeToFile() {
+    fs.writeFile('./dist/team.html', generateTeam(team), (err) => err ? console.error(err) : console.log('Success!'));
 }
