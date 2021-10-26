@@ -117,7 +117,7 @@ function addTeam() {
         if (answer.employeeRole === 'Manager') {
             inquirer.prompt(managerQuestion).then((managerOfficeNumber) => {
                 console.log(answer, managerOfficeNumber);
-                const managers = new Manager(answer.employeeRole, employeeName, employeeId, employeeEmail, managerOfficeNumber);
+                const managers = new Manager(answer.employeeRole, answer.employeeName, answer.employeeId, answer.employeeEmail, managerOfficeNumber);
                 team.push(managers);
                 inquirer.prompt(addAnotherEmployee).then((response) => {
                     if (response.anotherEmployee === true) {
@@ -130,7 +130,7 @@ function addTeam() {
         } else if (answer.employeeRole === 'Engineer') {
             inquirer.prompt(engineerQuestion).then((engineerGithub) => {
                 console.log(answer, engineerGithub);
-                const engineers = new Engineer(answer.employeeRole, employeeName, employeeId, employeeEmail, managerOfficeNumber);
+                const engineers = new Engineer(answer.employeeRole, answer.employeeName, answer.employeeId, answer.employeeEmail, engineerGithub);
                 team.push(engineers);
                 inquirer.prompt(addAnotherEmployee).then((response) => {
                     if (response.anotherEmployee === true) {
@@ -143,7 +143,7 @@ function addTeam() {
         } else {
             inquirer.prompt(internQuestion).then((internSchool) => {
                 console.log(answer, internSchool);
-                const interns = new Intern(answer.employeeRole, employeeName, employeeId, employeeEmail, managerOfficeNumber);
+                const interns = new Intern(answer.employeeRole, answer.employeeName, answer.employeeId, answer.employeeEmail, internSchool);
                 team.push(interns);
                 inquirer.prompt(addAnotherEmployee).then((response) => {
                     if (response.anotherEmployee === true) {
@@ -155,11 +155,12 @@ function addTeam() {
             })
         }
     })
-    writeToFile('team.html', )
+    writeToFile();
+    console.log(team);
 }
 
 addTeam();
 
-function writeToFile(fileName, data) {
-    fs.writeFile(fileName, data, (err) => err ? console.error(err) : console.log('Success!'));
+function writeToFile(fileName, team) {
+    fs.writeFile('./dist/team.html', generateTeam(JSON.team), (err) => err ? console.error(err) : console.log('Success!'));
 }
