@@ -29,7 +29,7 @@ employees.forEach(employee => {
         <div>
         <h3>ID: ${employee.id}</h3>
         <h3>Email: <a href='mailto:${employee.email}'>${employee.email}</a></h3>
-        <h3>GitHub: <a href='${employee.getGithub().github}'>${employee.getGithub().github}</a></h3>
+        <h3>GitHub: <a href='https://github.com/${employee.getGithub().github}'>${employee.getGithub().github}</a></h3>
         </div>
         </div>
         `
