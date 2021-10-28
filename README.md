@@ -28,3 +28,4 @@ https://github.com/Talha636/team_profile_generator
 
 https://watch.screencastify.com/v/mIXMOCbqNf2T1hCIOrgn
 
+<img width="1440" alt="Screen Shot 2021-10-27 at 23 43 53" src="https://user-images.githubusercontent.com/85548877/139183463-2b671bfb-5d91-499c-b7c6-ed566b7b0b79.png">
