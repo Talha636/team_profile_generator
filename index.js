@@ -136,7 +136,7 @@ function addTeam() {
                     if (response.anotherEmployee === true) {
                         addTeam();
                     } else {
-                        return;
+                        writeToFile();
                     }
                 })
             })
@@ -149,14 +149,12 @@ function addTeam() {
                     if (response.anotherEmployee === true) {
                         addTeam();
                     } else {
-                        return;
+                        writeToFile();
                     }
                 })
             })
         }
     })
-    // writeToFile();
-    console.log(team);
 }
 
 addTeam();
